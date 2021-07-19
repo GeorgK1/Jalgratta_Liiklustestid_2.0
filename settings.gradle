@@ -1,0 +1,2 @@
+rootProject.name = "jalgrattaliiklustestid"
+include ':app'

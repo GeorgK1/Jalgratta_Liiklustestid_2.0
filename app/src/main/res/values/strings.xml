@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Jalgratta liiklustestid</string>
+    <string name="menu_first">Testid</string>
+    <string name="menu_second">Tulemused</string>
+    <string name="menu_third">Info</string>
+    <string name="start_solving_button">Lahenda kohe</string>
+    <string name="choose_module_button">Lahenda kategooriate kaupa</string>
+    <string name="text_exam_button">Lahenda proovieksam</string>
+</resources>
