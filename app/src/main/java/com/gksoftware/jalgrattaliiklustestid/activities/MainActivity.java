@@ -1,4 +1,4 @@
-package com.gksoftware.jalgrattaliiklustestid;
+package com.gksoftware.jalgrattaliiklustestid.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -10,6 +10,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.gksoftware.jalgrattaliiklustestid.fragments.HomeFragment;
+import com.gksoftware.jalgrattaliiklustestid.fragments.InfoFragment;
+import com.gksoftware.jalgrattaliiklustestid.R;
+import com.gksoftware.jalgrattaliiklustestid.fragments.ResultFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
     private Button start_solving_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                     Fragment selectedFragment = null;
 
-                    switch(item.getItemId()) {
+                    switch (item.getItemId()) {
                         case R.id.nav_home:
                             selectedFragment = new HomeFragment();
                             break;
@@ -51,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {

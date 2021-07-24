@@ -9,4 +9,6 @@
    <color name="teal_700">#01796B</color>
    <color name="black">#000</color>
    <color name="dark_grey">#2d2d2d</color>
+   <color name="wrong_answer_background">#F44336</color>
+   <color name="right_answer_background">#388E3C</color>
 </resources>
