@@ -61,12 +61,46 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
                 "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
         addQuestion(q2);
-        Question q3 = new Question("Kes peab andma teed3?", "Jalgrattur A", "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus", "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+
+        Question q3 = new Question("Kes peab andma teed3?", "Jalgrattur A", "Jalgrattur B", "puudub",
+                "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
         addQuestion(q3);
+
         Question q4 = new Question("Kes peab andma teed4?", "Jalgrattur A",
                 "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
                 "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
         addQuestion(q4);
+
+        Question q5 = new Question("Kes peab andma teed5?", "Jalgrattur A",
+                "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+        addQuestion(q5);
+
+        Question q6 = new Question("Kes peab andma teed6?", "Jalgrattur A",
+                "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+        addQuestion(q6);
+
+        Question q7 = new Question("Kes peab andma teed7?", "Jalgrattur A",
+                "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+        addQuestion(q7);
+
+        Question q8 = new Question("Kes peab andma teed8?", "Jalgrattur A",
+                "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+        addQuestion(q8);
+
+        Question q9 = new Question("Kes peab andma teed9?", "Jalgrattur A",
+                "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+        addQuestion(q9);
+
+        Question q10 = new Question("Kes peab andma teed10?", "Jalgrattur A",
+                "Jalgrattur B", "puudub", "puudub", "puudub", 1, "teeandmise_kohustus",
+                "Jalgrattur B peab andma teed, kuna temal põleb fooris punane tuli, mis keelab edasi liikuda.");
+        addQuestion(q10);
     }
 
     private void addQuestion(Question question) {

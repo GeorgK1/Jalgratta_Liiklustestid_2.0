@@ -1,5 +1,7 @@
 package com.gksoftware.jalgrattaliiklustestid.fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(null);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         start_solving_button = (Button) v.findViewById(R.id.start_solving_button);

@@ -1,5 +1,7 @@
 package com.gksoftware.jalgrattaliiklustestid.fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +58,7 @@ public class TestPickerFragment extends Fragment {
 
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("Testide menüü");
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         return v;
     }
 

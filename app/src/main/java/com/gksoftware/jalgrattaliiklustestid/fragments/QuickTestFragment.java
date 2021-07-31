@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,8 +24,18 @@ import com.gksoftware.jalgrattaliiklustestid.R;
 import com.gksoftware.jalgrattaliiklustestid.models.Question;
 import com.gksoftware.jalgrattaliiklustestid.utils.QuizDbHelper;
 import com.gksoftware.jalgrattaliiklustestid.viewmodels.SharedViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class QuickTestFragment extends Fragment {
     private SharedViewModel viewModel;
@@ -43,6 +54,10 @@ public class QuickTestFragment extends Fragment {
     private String checkedRadioButtonText;
     private String[] splitSequence;
     private Button continueButton;
+    private FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
+    private int score;
+    private boolean answered;
 
     @Nullable
     @Override
@@ -53,6 +68,24 @@ public class QuickTestFragment extends Fragment {
         answerButtonGroup = v.findViewById(R.id.answer_button_group);
         continueButton = v.findViewById(R.id.button_continue);
         answerButtonContainer = v.findViewById(R.id.answer_button_container);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    currentUser = mAuth.getCurrentUser();
+                } else {
+                    Toast.makeText(getContext(), "Internetiühendusega on häired, testid töötavad ent tulemused ei salvestu", Toast.LENGTH_SHORT);
+                }
+            }
+        });
+
+
+
+
+
         QuizDbHelper dbHelper = new QuizDbHelper(getContext());
         questionList = dbHelper.getAllQuestions();
         explanationText = v.findViewById(R.id.explanation_test);
@@ -60,7 +93,12 @@ public class QuickTestFragment extends Fragment {
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerQuestion();
+                if (!answered) {
+                    answerQuestion();
+                } else {
+                    loadQuestions();
+                }
+
             }
         });
 
@@ -88,43 +126,49 @@ public class QuickTestFragment extends Fragment {
             public void onChanged(CharSequence charSequence) {
                 splitSequence = charSequence.toString().split(" ");
 
-
+                loadQuestions();
             }
         });
-        loadQuestions();
+
     }
 
     public void loadQuestions() {
-       // questionCountText.setText(questionCounter + 1 + "/" + splitSequence[0]);
+        answered = false;
 
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        currentQuestion = questionList.get(questionCounter);
-        questionTitle.setText(currentQuestion.getQuestion());
-        answerButtonGroup.removeAllViews();
-        explanationText.setText("");
-        optionList = currentQuestion.getAllOptions();
 
-        for (String option :
-                optionList) {
+        if(questionCounter < Integer.parseInt(splitSequence[0])) {
+            questionCountText.setText(questionCounter + 1 + "/" + splitSequence[0]);
+            continueButton.setText("Vasta");
+            continueButton.setEnabled(false);
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            currentQuestion = questionList.get(questionCounter);
+            questionTitle.setText(currentQuestion.getQuestion());
+            answerButtonGroup.removeAllViews();
+            explanationText.setText("");
+            optionList = currentQuestion.getAllOptions();
 
-            if (!option.equals("puudub")) {
-                answerButton = new RadioButton(getContext());
-                answerButton.setText(option);
-                answerButtonGroup.addView(answerButton);
+            for (String option : optionList) {
 
+                if (!option.equals("puudub")) {
+                    answerButton = new RadioButton(getContext());
+                    answerButton.setText(option);
+                    answerButtonGroup.addView(answerButton);
+
+
+                }
 
             }
-
+        } else {
+            finishTest();
         }
 
 
     }
 
-    public void answerQuestion() {
-        questionCounter++;
-
+    public void showSolution() {
         if (optionList.indexOf(checkedRadioButtonText) == currentQuestion.getRightAnswer()) {
             questionTitle.setText("Õige vastus!");
+            score++;
             ((AppCompatActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.right_answer_background)));
         } else {
             questionTitle.setText("Vale vastus!");
@@ -132,12 +176,38 @@ public class QuickTestFragment extends Fragment {
         }
         continueButton.setText("Järgmine küsimus");
 
-        continueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadQuestions();
-            }
-        });
+
         explanationText.setText(currentQuestion.getExplanation());
+    }
+
+    public void answerQuestion() {
+        questionCounter++;
+        answered = true;
+        showSolution();
+    }
+
+    public void finishTest() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        Map<String, Object> userResults = new HashMap<>();
+        userResults.put("score", score);
+        userResults.put("percentage", Math.floor(score / Float.parseFloat(splitSequence[0]) * 100));
+        userResults.put("question_count", splitSequence[0]);
+
+        db.collection("users")
+                .document(currentUser.getUid())
+                .collection("results")
+                .document()
+                .set(userResults, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getContext(), "Tulemused edukalt salvestatud", Toast.LENGTH_SHORT);
+                    }
+                });
+
+
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ResultFragment()).addToBackStack(null).commit();
     }
 }
