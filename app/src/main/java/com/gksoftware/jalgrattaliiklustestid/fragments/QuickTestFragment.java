@@ -191,6 +191,7 @@ public class QuickTestFragment extends Fragment {
 
 
         Map<String, Object> userResults = new HashMap<>();
+        userResults.put("solving_category", "Lahenda kohe");
         userResults.put("score", score);
         userResults.put("percentage", Math.floor(score / Float.parseFloat(splitSequence[0]) * 100));
         userResults.put("question_count", splitSequence[0]);

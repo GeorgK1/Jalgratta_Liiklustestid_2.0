@@ -67,7 +67,11 @@ public class ResultFragment extends Fragment {
                             ArrayList<String> resultList = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
 
-                                resultList.add("Punktid" + " : " + document.get("score").toString() + "\n" + "Protsent" + " : " + document.get("percentage").toString() + "\n" + "Küsimuste arv" + " : " + document.get("question_count").toString());
+                                resultList.add(document.get("solving_category").toString() + "\n"
+                                        + "\n"
+                                        +"Punktid" + " : " + document.get("score").toString() + "\n"
+                                        + "Protsent" + " : " + document.get("percentage").toString() + "\n"
+                                        + "Küsimuste arv" + " : " + document.get("question_count").toString());
 
                             }
                             ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.list_item, resultList);

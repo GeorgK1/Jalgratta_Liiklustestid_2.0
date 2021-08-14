@@ -15,7 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.gksoftware.jalgrattaliiklustestid.R;
 
 public class HomeFragment extends Fragment {
-    private Button start_solving_button;
+    private Button startSolvingButton;
+    private Button chooseCategoryButton;
 
     @Nullable
     @Override
@@ -26,19 +27,31 @@ public class HomeFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle(null);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        start_solving_button = (Button) v.findViewById(R.id.start_solving_button);
-        start_solving_button.setOnClickListener(new View.OnClickListener() {
+        startSolvingButton =  v.findViewById(R.id.start_solving_button);
+        chooseCategoryButton = v.findViewById(R.id.choose_category_button);
+
+        startSolvingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openTestFragment();
             }
         });
 
+        chooseCategoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChooseCategoryFragment();
+            }
+        });
         return v;
 
     }
 
     public void openTestFragment() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TestPickerFragment()).addToBackStack(null).commit();
+    }
+
+    public void openChooseCategoryFragment() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PickTestCategory()).addToBackStack(null).commit();
     }
 }

@@ -29,7 +29,7 @@
             tools:ignore="TextContrastCheck" />
 
         <Button
-            android:id="@+id/choose_module_button"
+            android:id="@+id/choose_category_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

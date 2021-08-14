@@ -6,4 +6,15 @@
     <string name="start_solving_button">Lahenda kohe</string>
     <string name="choose_module_button">Lahenda kategooriate kaupa</string>
     <string name="text_exam_button">Lahenda proovieksam</string>
+
+    <string name="category_1">Teeandmise kohustus</string>
+    <string name="category_2">Sõiduki asukoht sõitmisel</string>
+    <string name="category_3">Vasak- ja tagasipööre</string>
+    <string name="category_4">Ümberpõige</string>
+    <string name="category_5">Sõitmine ristmikel</string>
+    <string name="category_6">Sõidutee ületamine ülekäigukoha või ülekäiguraja kaudu</string>
+    <string name="category_7">Juhi kohustused jalakäijate ohutuse tagamisel</string>
+    <string name="category_8">Sõitmine jalgrattateel või jalgratta- ja jalgteel</string>
+    <string name="category_9">Sõitmine pimeda ajal või halva nähtavuse tingimustes</string>
+    <string name="category_10">Jalgratturi ja pisimopeedijuhi ohutus ja käitumine liikluses</string>
 </resources>

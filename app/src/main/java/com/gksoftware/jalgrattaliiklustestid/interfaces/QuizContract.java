@@ -22,7 +22,18 @@ public final class QuizContract {
         public static final String COLUMN_EXPLANATION = "explanation";
 
         //categories
-        public static final String COLUMN_CATEGORY = "category";
+        public static final String COLUMN_CATEGORY= "category";
+
+        public static final String COLUMN_CATEGORY_TEEANDMISE_KOHUSTUS = "category";
+        public static final String COLUMN_CATEGORY_SÕIDUKI_ASUKOHT_SÕITMISEL = "category";
+        public static final String COLUMN_CATEGORY_VASAK_JA_TAGASIPÖÖRE = "category";
+        public static final String COLUMN_CATEGORY_ÜMBERPÕIGE = "category";
+        public static final String COLUMN_CATEGORY_SÕITMINE_RISTMIKEL = "category";
+        public static final String COLUMN_CATEGORY_SÕIDUTEE_ÜLETAMINE_ÜLEKÄIGUKOHA_VÕI_ÜLEKÄIGURAJA_KAUDU = "category";
+        public static final String COLUMN_CATEGORY_JUHI_KOHUSTUSED_JALAKÄIJATE_OHUTUSE_TAGAMISEL = "category";
+        public static final String COLUMN_CATEGORY_SÕITMINE_JALGRATTATEEL_VÕI_JALGRATTA_JA_JALGTEEL = "category";
+        public static final String COLUMN_CATEGORY_SÕITMINE_PIMEDA_AJAL_VÕI_HALVA_NÄHTAVUSE_TINGIMUSTES = "category";
+        public static final String COLUMN_CATEGORY_JALGRATTURI_JA_PISIMOPEEDIJUHI_OHUTUS_JA_KÄITUMINE_LIIKLUSES = "category";
 
 
     }

@@ -1,5 +1,7 @@
 package com.gksoftware.jalgrattaliiklustestid.models;
 
+import com.gksoftware.jalgrattaliiklustestid.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,4 +117,21 @@ public class Question {
         return listOfOptions;
     }
 
+    public static List<Integer> getAllCategories() {
+
+        List<Integer> listOfCategories = new ArrayList<>();
+
+        listOfCategories.add(R.string.category_1);
+        listOfCategories.add(R.string.category_2);
+        listOfCategories.add(R.string.category_3);
+        listOfCategories.add(R.string.category_4);
+        listOfCategories.add(R.string.category_5);
+        listOfCategories.add(R.string.category_6);
+        listOfCategories.add(R.string.category_7);
+        listOfCategories.add(R.string.category_8);
+        listOfCategories.add(R.string.category_9);
+        listOfCategories.add(R.string.category_10);
+
+        return listOfCategories;
+    }
 }
